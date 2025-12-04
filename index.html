@@ -1,64 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>PopCat Clicker - Privacy Policy</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #0d0d16;
-    color: #fff;
-    line-height: 1.7;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-  }
-  h1 {
-    color: #ff66ff;
-    text-align: center;
-  }
-  a { color: #66ccff; }
-</style>
+  <meta charset="UTF-8">
+  <title>PopCat Clicker - Privacy Policy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="icon.png" />
+
+  <style>
+    :root {
+      --bg: #050012;
+      --bg-alt: #0c0624;
+      --card: #130a33;
+      --accent-pink: #ff4fd8;
+      --accent-cyan: #28e0ff;
+      --accent-soft: #b8aaff;
+      --text-main: #f9f7ff;
+      --text-muted: #cbc3ff;
+      --radius-lg: 18px;
+      --shadow-neon: 0 0 25px rgba(255, 79, 216, 0.55),
+                     0 0 35px rgba(40, 224, 255, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at top, #24105a 0, #050012 48%, #020009 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background:
+        linear-gradient(90deg, rgba(255, 79, 216, 0.35), rgba(40, 224, 255, 0.25)),
+        rgba(5, 0, 25, 0.88);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+    }
+
+    .header-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 18px rgba(255, 79, 216, 0.8);
+      background: radial-gradient(circle at 30% 20%, #ffffff, #ffe6ff 35%, #ff4fd8 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .brand-text-main {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.96rem;
+    }
+
+    .brand-text-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    nav {
+      display: none;
+    }
+
+    @media (min-width: 720px) {
+      nav {
+        display: flex;
+        gap: 12px;
+        font-size: 0.85rem;
+      }
+
+      nav a {
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s, color 0.2s;
+      }
+
+      nav a:hover {
+        border-color: rgba(255, 255, 255, 0.32);
+        color: var(--text-main);
+        background: rgba(7, 2, 40, 0.9);
+      }
+
+      nav a.active {
+        border-color: rgba(255, 255, 255, 0.7);
+        color: #ffffff;
+        background: rgba(7, 2, 40, 1);
+      }
+    }
+
+    /* ===== Layout ===== */
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px 16px 36px;
+    }
+
+    .intro-card {
+      background:
+        radial-gradient(circle at top left, rgba(255, 79, 216, 0.22), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(40, 224, 255, 0.18), transparent 55%),
+        linear-gradient(145deg, #1c0f46, #09041f);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 22px 18px 20px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-neon);
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      text-shadow:
+        0 0 14px rgba(255, 255, 255, 0.35),
+        0 0 24px rgba(255, 79, 216, 0.9);
+    }
+
+    .tagline {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .badge-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(5, 0, 30, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: var(--accent-soft);
+    }
+
+    .updated {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: var(--accent-soft);
+    }
+
+    .section-card {
+      background: linear-gradient(145deg, #130a33, #07031b);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 20px 18px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      scroll-margin-top: 90px; /* عشان الهيدر */
+    }
+
+    /* تأثير popup عند الوصول */
+    .section-card.active-block {
+      transform: scale(1.02);
+      box-shadow: 0 0 40px rgba(255, 79, 216, 0.8);
+      border-color: rgba(255, 255, 255, 0.7);
+      z-index: 5;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: -35%;
+      pointer-events: none;
+      opacity: 0.7;
+      background:
+        radial-gradient(circle at 10% 0, rgba(255, 79, 216, 0.14), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(40, 224, 255, 0.18), transparent 55%);
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-size: 1.18rem;
+      margin-bottom: 8px;
+      color: #ffe4ff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    h2 span.icon {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.96rem;
+      margin-bottom: 8px;
+      color: #efe9ff;
+    }
+
+    ul {
+      list-style: none;
+      margin: 4px 0 8px 0;
+      padding-left: 0;
+    }
+
+    ul li {
+      font-size: 0.93rem;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+      position: relative;
+      padding-left: 16px;
+    }
+
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: 0;
+      color: var(--accent-cyan);
+    }
+
+    .note {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .highlight {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px 26px;
+    }
+
+    @media (min-width: 780px) {
+      .two-col {
+        grid-template-columns: 1.1fr 1.1fr;
+      }
+    }
+
+    .small-title {
+      font-weight: 600;
+      margin-top: 4px;
+      margin-bottom: 2px;
+      font-size: 0.9rem;
+      color: #ffe4ff;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding: 16px 10px 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(3, 0, 18, 0.9);
+    }
+
+    .back-top {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .back-top:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+  </style>
 </head>
 <body>
 
-<h1>Privacy Policy</h1>
+<header id="top">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">
+        <img src="icon.png" alt="PopCat icon">
+      </div>
+      <div>
+        <div class="brand-text-main">POPCAT CLICKER</div>
+        <div class="brand-text-sub">Privacy &amp; Data Protection Overview</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#data" id="nav-data">Data</a>
+      <a href="#ads" id="nav-ads">Ads</a>
+      <a href="#children" id="nav-children">Children</a>
+      <a href="#rights" id="nav-rights">Your Rights</a>
+      <a href="#changes" id="nav-changes">Changes</a>
+      <a href="#contact" id="nav-contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-<p><strong>PopCat Clicker</strong> is a simple casual game designed for all ages, including children.  
-This game does not collect, store, or share any personal data from users.</p>
+<main class="page">
 
-<h2>Information We Do Not Collect</h2>
-<p>PopCat Clicker does <strong>NOT</strong> collect any of the following:</p>
-<ul>
-  <li>No personal information</li>
-  <li>No names, emails, or phone numbers</li>
-  <li>No location data</li>
-  <li>No gameplay analytics</li>
-  <li>No device identifiers</li>
-</ul>
+  <!-- Intro -->
+  <section class="intro-card">
+    <div class="section-inner">
+      <h1>Privacy Policy</h1>
+      <p class="tagline">
+        This page explains in clear language how <strong>PopCat Clicker</strong> handles data,  
+        which is very simple: <span class="highlight">we do not collect any personal information from players.</span>
+      </p>
 
-<h2>Third-Party Services</h2>
-<p>The game may display advertisements or offer rewarded ads.  
-These ads may be provided by third-party ad networks, which may collect anonymous usage data  
-according to their own privacy policies.</p>
+      <div class="badge-line">
+        <div class="badge">No account required</div>
+        <div class="badge">No personal data stored</div>
+        <div class="badge">Child-friendly gameplay</div>
+        <div class="badge">AdMob ads only</div>
+      </div>
 
-<p>We do not have access to or control over any information collected by third parties.</p>
+      <p class="updated">Last updated: January 2025</p>
+    </div>
+  </section>
 
-<h2>Children's Privacy</h2>
-<p>This game is safe for children.  
-We do not knowingly collect or request any personal data from anyone under 13 years old.</p>
+  <!-- 1. Data -->
+  <section class="section-card" id="data">
+    <div class="section-inner">
+      <h2><span class="icon">🔒</span>1. Personal data we <u>do not</u> collect</h2>
+      <p>
+        PopCat Clicker is designed to be a safe, casual game.  
+        The app itself does <strong>not</strong> collect, store, or process any personally identifiable information.
+      </p>
+      <p>Specifically, we do <strong>not</strong> ask for or store:</p>
+      <ul>
+        <li>Names, usernames, passwords, email addresses, or phone numbers</li>
+        <li>Home address, GPS or precise location data</li>
+        <li>Contacts, photos, camera access, microphone recordings, or files</li>
+        <li>Payment or billing information</li>
+        <li>Login to social media or other external accounts</li>
+      </ul>
+      <p>
+        The game runs without registration and does not create any online profile for the player.  
+        All gameplay progress (such as coins or upgrades) is stored <strong>locally on the device only</strong>.
+      </p>
+    </div>
+  </section>
 
-<h2>Changes to This Policy</h2>
-<p>We may update this Privacy Policy if needed.  
-Any changes will be posted on this page.</p>
+  <!-- 2. Permissions -->
+  <section class="section-card" id="permissions">
+    <div class="section-inner">
+      <h2><span class="icon">📱</span>2. App permissions and local game data</h2>
+      <p>
+        PopCat Clicker uses only the minimal permissions required to run the game and display ads.
+        We do not request dangerous permissions such as access to contacts, SMS, or device storage for personal files.
+      </p>
 
-<h2>Contact Us</h2>
-<p>If you have any questions about this Privacy Policy, you can contact us at:</p>
-<p><strong>Email:</strong> popfaresmedia.dev@gmail.com</p>
+      <div class="two-col">
+        <div>
+          <div class="small-title">Local game data</div>
+          <p>
+            Game progress (for example collected items, coins, and upgrades) is stored locally on your device in
+            standard game save files or preferences. This information:
+          </p>
+          <ul>
+            <li>Is not personal data and cannot identify you as an individual</li>
+            <li>Is never uploaded to our own servers</li>
+            <li>Is removed if you uninstall the game or clear its data</li>
+          </ul>
+        </div>
+        <div>
+          <div class="small-title">Network usage</div>
+          <p>
+            The game may access the internet <strong>only</strong> to:
+          </p>
+          <ul>
+            <li>Load and display third-party advertisements</li>
+            <li>Check for updated ad content from providers</li>
+          </ul>
+          <p class="note">
+            The game does not implement its own analytics or tracking SDKs, and we do not
+            operate any backend server for this title.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<p>Last updated: December 2024</p>
+  <!-- 3. Ads -->
+  <section class="section-card" id="ads">
+    <div class="section-inner">
+      <h2><span class="icon">📢</span>3. Third-party advertising (Google AdMob)</h2>
+      <p>
+        PopCat Clicker may show banner ads or rewarded ads.  
+        These ads are served by <strong>Google AdMob</strong>, a third-party advertising network.
+      </p>
+      <p>
+        AdMob may automatically receive <strong>non-personal, technical information</strong> from your device, such as:
+      </p>
+      <ul>
+        <li>Device type, operating system version, and language</li>
+        <li>Approximate location (e.g., country or region), where allowed</li>
+        <li>Anonymous advertising identifiers used for showing and measuring ads</li>
+      </ul>
+      <p>
+        This data is processed under Google’s responsibility and privacy terms.
+        We, as the game developer, do <strong>not</strong> have access to the raw information AdMob collects and we do <strong>not</strong> create any separate database from it.
+      </p>
+      <p class="note">
+        For full details on how Google handles information, please refer to:<br>
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+          Google Privacy Policy
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. Children -->
+  <section class="section-card" id="children">
+    <div class="section-inner">
+      <h2><span class="icon">🧒</span>4. Children’s privacy</h2>
+      <p>
+        PopCat Clicker is intended to be <strong>child-friendly</strong>.  
+        The gameplay contains no violence, no user-generated content, and no chat features.
+      </p>
+      <p>
+        We do not knowingly collect personal information from children under 13 years of age  
+        (or any other age defined by local child-protection laws).
+      </p>
+      <p>
+        Parents or guardians who believe that the game may have collected personal data by mistake  
+        are encouraged to contact us. We will review the request and cooperate with any necessary
+        steps to remove such data, even though our design avoids collecting it in the first place.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. Rights -->
+  <section class="section-card" id="rights">
+    <div class="section-inner">
+      <h2><span class="icon">⚖️</span>5. Legal basis and your rights</h2>
+      <p>
+        Because PopCat Clicker does not collect personal data, most formal data-protection rights  
+        (such as access, rectification, deletion, or data export) are satisfied by default:  
+        there is no personal dataset about you in our systems.
+      </p>
+      <p>
+        However, if you contact us with any privacy-related question, concern, or request, we will:
+      </p>
+      <ul>
+        <li>Explain clearly what our app does and does not do with data</li>
+        <li>Assist you in managing settings related to ads where possible</li>
+        <li>Provide links to relevant third-party policies (e.g., Google)</li>
+      </ul>
+      <p class="note">
+        For ad personalisation controls, you can also adjust your device or Google account settings
+        (for example “Ads personalisation” on Android devices).
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. Changes -->
+  <section class="section-card" id="changes">
+    <div class="section-inner">
+      <h2><span class="icon">📝</span>6. Changes to this policy</h2>
+      <p>
+        We may update this Privacy Policy if the game adds new features, new advertising partners,
+        or if legal requirements change. When we do so, we will:
+      </p>
+      <ul>
+        <li>Update the “Last updated” date at the top of this page</li>
+        <li>Keep the explanation clear, simple, and transparent</li>
+      </ul>
+      <p>
+        We recommend checking this page from time to time if you wish to stay informed about  
+        how PopCat Clicker protects privacy.
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. Contact -->
+  <section class="section-card" id="contact">
+    <div class="section-inner">
+      <h2><span class="icon">📬</span>7. Contact us</h2>
+      <p>
+        If you have any questions about this Privacy Policy or about how data is handled in
+        <strong>PopCat Clicker</strong>, you can always reach us:
+      </p>
+      <ul>
+        <li><strong>Email:</strong> luxelace79@gmail.com</li>
+      </ul>
+      <p>
+        We aim to respond to reasonable requests as quickly as possible and are happy to cooperate
+        with store reviewers, parents, or regulators who need clarification.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 PopCat Clicker – All rights reserved.
+  <br>
+  <span class="back-top" onclick="scrollToTop()">Back to top ↑</span>
+</footer>
+
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const navLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('.section-card');
+
+  function setActiveLinkByHash(hash) {
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === hash) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // عند الضغط على اللينك: scroll مع offset + هايلايت + popup effect
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const hash = link.getAttribute('href');
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      // شيل الactive-block من كل البلوكات
+      sections.forEach(sec => sec.classList.remove('active-block'));
+
+      const headerOffset = 90;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+
+      // خلي البلوك نفسه عامل popup
+      target.classList.add('active-block');
+      setActiveLinkByHash(hash);
+    });
+  });
+
+  // لو الصفحة فتحت وعليها hash من برة
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      const target = document.querySelector(hash);
+      if (target) {
+        sections.forEach(sec => sec.classList.remove('active-block'));
+        target.classList.add('active-block');
+        setActiveLinkByHash(hash);
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
-
